@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday my dear! 🎉</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0, #ffafbd);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* FIXED: Clean layout system - No absolute overlap bugs */
+        .page-section {
+            display: none; /* Subbu sections hidden by default */
+            width: 100%;
+            max-width: 480px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* FIXED: Simple clear block display for active page triggers */
+        .page-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Glassmorphism Card Container */
+        .container {
+            
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(255, 71, 126, 0.2);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        h1 { color: #ff477e; font-size: 2.5rem; margin-bottom: 12px; }
+        h2 { color: #ff0054; font-size: 2.1rem; margin-bottom: 15px; }
+        p { color: #5c677d; font-size: 1.15rem; line-height: 1.7; font-weight: 500; }
+        
+        /* Modernized Interactive Pill Buttons */
+        .audio-btn {
+            background: linear-gradient(135deg, #ff477e, #ff0054);
+            color: white; 
+            border: none;
+            padding: 12px 28px; 
+            font-size: 1.05rem; 
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer; 
+            margin: 15px 0; 
+            box-shadow: 0 5px 15px rgba(255, 71, 126, 0.4);
+            transition: transform 0.2s ease;
+            width: 100%;
+        }
+        .audio-btn:hover { transform: scale(1.03); }
+        .audio-btn:active { transform: scale(0.98); }
+
+        /* 4 Photo Local Grid Layout */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 12px;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            height: 140px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Video wrapper on final page */
+        .video-wrapper {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .video-wrapper video {
+            width: 100%;
+            display: block;
+            border-radius: 16px;
+        }
+
+        /* CSS-Based Smooth Floating Balloons */
+        .balloon-container { position: fixed; bottom: -100px; width: 100%; pointer-events: none; z-index: 1; }
+        .balloon {
+            width: 50px; height: 65px; background: rgba(255, 71, 126, 0.8);
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            position: absolute; animation: floatUp 8s linear infinite;
+        }
+        .balloon::after {
+            content: ""; position: absolute; bottom: -8px; left: 22px;
+            width: 0; height: 0; border-left: 3px solid transparent;
+            border-right: 3px solid transparent; border-bottom: 8px solid rgba(255, 71, 126, 0.8);
+        }
+        @keyframes floatUp {
+            0% { bottom: -100px; opacity: 0; transform: translateX(0); }
+            10% { opacity: 1; }
+            90% { opacity: 0.9; }
+            100% { bottom: 105vh; opacity: 0; transform: translateX(40px); }
+        }
+       body {
+    background-image: url('./photo5.jpg'), url('./IMG-20260701-WA0025.jpg');
+    background-repeat: no-repeat, no-repeat;
+    background-position: left center, right center; 
+    background-size: contain, contain; 
+    min-height: 100vh; 
+    margin: 0; 
+
+    /* படத்தின் தரத்தை மேம்படுத்தும் குறியீடு */
+    image-rendering: -webkit-optimize-contrast; /* Chrome, Safari உலாவிகளுக்கு */
+    image-rendering: crisp-edges;               /* Firefox உலாவிக்கு */
+}
+
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Background Music Holder -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="./song.mp3" type="audio/mp3">
+    </audio>
+    <!-- PAGE 1: Welcome Greeting Screen (Active by Default) -->
+    <div class="page-section active" id="page1">
+        <div class="container">
+            <button class="audio-btn" id="musicBtn" onclick="toggleMusic()" style="background: #6c757d;">🎵 Play Music</button>
+            <h1>Happy Birthday di ammu 🎉</h1>
+            <p>Intha naal unnakku rompa happyjana naala irukkum di ma! Ne eppavum Happy ja irukkanumnu unna aaseirvatham panran di chellam.❤️<br>
+            you are my everything di pondadi <br>
+            ❤️❤️Many Many Happy Returnes Of The Day Di Chellam❤️❤️</p>
+            <button class="audio-btn" onclick="goToPage2()"> Ithu unda appachida kutty gift da ammachchi! 💥</button>
+        </div>
+    </div>
+
+    <!-- PAGE 2: Memory Gallery Screen -->
+    <div class="page-section" id="page2">
+        <div class="container">
+            <h2>This is for you my LOVE</h2>
+            <p>Ne enakku kedichchathu pareja varam di chellam, 
+                Enakku unna rompa pedikkum chellam ennatha sanda poddalum ne illama ennala irukkavay mudijathu ma 
+                Ipa unkoda pakkaththela illa endu worry pannatha Chellam
+                naan kudija sekkeram unnadda varuvan ma 
+                Naan unkuda irukkum pothu unna rompa santhosama paththukkuvan di Chellam❤️❤️<br><br>
+                ❤️❤️I LOVE YOU SO MUCH DARLING❤️❤️
+            </p>
+            
+            <div class="gallery">
+                <div class="gallery-item"><img src="./photo1.jpg" alt="Pic 1"></div>
+                <div class="gallery-item"><img src="./photo2.jpg" alt="Pic 2"></div>
+                <div class="gallery-item"><img src="./photo3.jpg" alt="Pic 3"></div>
+                <div class="gallery-item"><img src="./photo4.jpg" alt="Pic 4"></div>
+            </div>
+            
+            <button class="audio-btn" onclick="goToPage3()">Next Surprise! 🌟</button>
+        </div>
+    </div>
+
+    <!-- PAGE 3: Final Message Box Screen -->
+    <div class="page-section" id="page3">
+        <div class="container">
+            <h2>Special Message For You 💌</h2>
+            <p style="font-style: italic; color: #ff0054; font-size: 1.3rem;">"My dear chellam <br>naan eppavum unkudajay iruppan intha time pakkaththela illa endu feel panatha 
+            i am coming Chellam❤️❤️<br>Ne eppavum enkuda happy ja irukkanum una naan santhosama paththukkanum paththukkolluvan 
+            happy ja iru chellam 
+            <br>God Bless You DARLING❤️❤️<br>
+                I LOVE YOU SO MUCH Chellam❤️❤️</p>
+            <button class="audio-btn" onclick="goToPage4()">This is for you DARLING❤️❤️</button>
+        </div>
+    </div>
+
+    <!-- PAGE 4: Video Surprise Screen -->
+    <div class="page-section" id="page4">
+        <div class="container">
+            <h2>One Last Surprise 🎬</h2>
+            <div class="video-wrapper">
+                <video id="surpriseVideo" controls playsinline>
+                    <source src="./video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <button class="audio-btn" onclick="restartWishes()">Back to Start 🔄</button>
+        </div>
+    </div>
+
+    <!-- Balloons Spawner Base -->
+    <div class="balloon-container" id="balloonContainer"></div>
+
+    <script>
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        const surpriseVideo = document.getElementById('surpriseVideo');
+        
+        function toggleMusic() {
+            if (music.paused) {
+                music.play()
+                    .then(() => { musicBtn.innerText = "⏸️ Pause Music"; musicBtn.style.background = "#ff477e"; })
+                    .catch(e => { console.log("Music play blocked by browser setup rules."); });
+            } else {
+                music.pause();
+                musicBtn.innerText = "🎵 Play Music";
+                musicBtn.style.background = "#6c757d";
+            }
+        }
+
+        // FIXED: Independent Native Navigation Switching
+        function goToPage2() {
+            // Attempt to fire music trigger safely during the user interaction
+            if (music.paused) {
+                music.play().catch(e => console.log("Music pending setup."));
+                musicBtn.innerText = "⏸️ Pause Music";
+                musicBtn.style.background = "#ff477e";
+            }
+
+            document.getElementById('page1').classList.remove('active');
+            document.getElementById('page2').classList.add('active');
+        }
+
+        function goToPage3() {
+            document.getElementById('page2').classList.remove('active');
+            document.getElementById('page3').classList.add('active');
+        }
+
+        // Moves to the video surprise page and starts playing the video.
+        // Background music is paused first so it doesn't overlap the video's audio.
+        function goToPage4() {
+            if (!music.paused) {
+                music.pause();
+                musicBtn.innerText = "🎵 Play Music";
+                musicBtn.style.background = "#6c757d";
+            }
+
+            document.getElementById('page3').classList.remove('active');
+            document.getElementById('page4').classList.add('active');
+
+            surpriseVideo.currentTime = 0;
+            surpriseVideo.play().catch(e => console.log("Video autoplay blocked, user can press play manually."));
+        }
+
+        function restartWishes() {
+            surpriseVideo.pause();
+            document.getElementById('page4').classList.remove('active');
+            document.getElementById('page1').classList.add('active');
+        }
+
+        // Safe Fallback Balloon Generations 
+        window.onload = function() {
+            createBalloons();
+        };
+
+        function createBalloons() {
+            const container = document.getElementById('balloonContainer');
+            const colors = ['#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#70e000', '#00b4d8'];
+            
+            for (let i = 0; i < 12; i++) {
+                let balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                let randomLeft = Math.floor(Math.random() * 90);
+                let randomDelay = Math.random() * 5;
+                let randomColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                balloon.style.left = randomLeft + '%';
+                balloon.style.animationDelay = randomDelay + 's';
+                balloon.style.background = randomColor;
+
+                let style = document.createElement('style');
+                style.innerHTML = `.balloon:nth-child(${i+1})::after { border-bottom-color: ${randomColor}; }`;
+                document.head.appendChild(style);
+                container.appendChild(balloon);
+            }
+        }
+    </script>
+</body>
+</html>
